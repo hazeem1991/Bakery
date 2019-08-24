@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Backery\Models\Package;
+namespace Backery\Models;
 
 class Package
 {

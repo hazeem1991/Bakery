@@ -1,6 +1,6 @@
 <?php
 
-namespace Backery\Models\Cart;
+namespace Backery\Models;
 
 class Cart extends \ArrayOject
 {
