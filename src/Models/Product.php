@@ -7,7 +7,7 @@ class Product
     private $name;
     private $code;
     private $price;
-    public function __construct(string $name,string $code,float $price):void
+    public function __construct(string $name,string $code,float $price)
     {
         $this->name=$name;
         $this->price=$price;
