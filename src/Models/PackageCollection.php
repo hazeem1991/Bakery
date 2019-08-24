@@ -4,7 +4,7 @@ namespace Backery\Models;
 
 class PackageCollection extends \ArrayObject
 {
-    protected function append(Package $package):bool
+    public function append(Package $package):bool
     {
         if(!$this->search()){
             parent::append($package);
