@@ -2,7 +2,7 @@
 
 namespace Backery\Models\Cart;
 
-class Cart
+class Cart extends ArrayOject
 {
 
 }
