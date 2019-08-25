@@ -16,20 +16,29 @@ if (STDIN) {
     $first_line = trim_line(fgets(STDIN));
     switch ($first_line) {
         case 'products':
-            echo "creating products";
+            echo "creating products\n";
             while (($input = fgets(STDIN)) !== false) {
                 $input = explode(" ", trim_line($input));
                 MainController::mainController()->addProduct($input[0], $input[1], $input[2]);
             }
-            echo "products added";
+            echo "products added\n";
             break;
         case 'packages':
-            echo "addd packages";
+            echo "add packages\n";
             while (($input = fgets(STDIN)) !== false) {
                 $input = explode(" ", trim_line($input));
                 MainController::mainController()->setPackage($input[0], $input[1]);
             }
-            echo "packages added";
+            echo "packages added\n";
+            break;
+        case 'cart':
+            echo "add to cart\n";
+            while (($input = fgets(STDIN)) !== false) {
+                $input = explode(" ", trim_line($input));
+                $cart=MainController::mainController()->addtoCart($input[0], $input[1]);
+            }
+            echo json_encode($cart)."\n";
+            echo "to cart added\n";
             break;
         default:
             throw new Exception("Error Processing File", 1);

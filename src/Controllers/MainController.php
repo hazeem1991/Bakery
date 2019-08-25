@@ -3,7 +3,7 @@
 namespace Backery\Controllers;
 
 use Backery\Models\Product;
-
+use Backery\Models\Cart;
 class MainController
 {
     private static $mainController;
@@ -20,9 +20,11 @@ class MainController
     {
         // Disable unserialize
     }
-    public function addtoCart(string $product_code, int $product_count): MainController
+    public function addtoCart(string $product_code, string $quantity): Cart
     {
-        return $this;
+        $product = Product::getProduct($product_code);
+        $cart=Cart::newCart()->addProductToCart($product,(int)$quantity);
+        return $cart;
     }
     public function addProduct(string $name, string $code, string $price): Product
     {
