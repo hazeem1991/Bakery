@@ -20,6 +20,8 @@
     <testsuites>
         <testsuite name="Backery">
             <file>./src/test/Models/ProductTest.php</file>
+            <file>./src/test/Models/PackageTest.php</file>
+            <file>./src/test/Controllers/MainControllerTest.php</file>
         </testsuite>
     </testsuites>
     <logging>

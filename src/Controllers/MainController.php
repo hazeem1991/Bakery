@@ -24,11 +24,11 @@ class MainController
     {
         return $this;
     }
-    public function addProduct(string $name, string $code, string $price): MainController
+    public function addProduct(string $name, string $code, string $price): Product
     {
         $product = new Product($name, $code, (float) $price);
         $product->save();
-        return $this;
+        return $product;
     }
     public function setPackeges(): MainController
     {
