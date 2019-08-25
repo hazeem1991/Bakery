@@ -8,6 +8,7 @@ class Product implements \JsonSerializable
     private $code;
     private $price;
     private $packages;
+    const DATA_FILE='src/Data/'."products_data.txt";
     public function __construct(string $name, string $code, float $price)
     {
         $this->name = $name;
@@ -66,9 +67,11 @@ class Product implements \JsonSerializable
     }
     public function save()
     {
-        fopen($_SERVER['DOCUMENT_ROOT'].'src/Data/'."products_data.txt",'w');
-        $product_array=json_decode(file_get_contents($_SERVER['DOCUMENT_ROOT'].'src/Data/'."products_data.txt"));
-        $product_array[]=$this->jsonSerialize();
-        file_put_contents($_SERVER['DOCUMENT_ROOT'].'src/Data/'."products_data.txt",json_encode($product_array));
+        if(!is_file(self::DATA_FILE)){
+            file_put_contents(self::DATA_FILE,'');
+        }
+        $product_array=json_decode(file_get_contents(self::DATA_FILE),true);
+        $product_array[$this->code]=$this->jsonSerialize();
+        file_put_contents(self::DATA_FILE,json_encode($product_array));
     }
 }

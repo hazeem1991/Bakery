@@ -28,7 +28,6 @@ class MainController
     {
         $product = new Product($name, $code, (float) $price);
         $product->save();
-
         return $this;
     }
     public function setPackeges(): MainController
