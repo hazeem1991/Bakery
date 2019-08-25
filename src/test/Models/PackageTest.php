@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Backery\Test\Models;
+namespace Bakery\Test\Models;
 
 use PHPUnit\Framework\TestCase;
-use Backery\Models\Package;
+use Bakery\Models\Package;
 
 class PackageTest extends TestCase
 {

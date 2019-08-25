@@ -1,6 +1,6 @@
 <?php declare (strict_types = 1);
 
-namespace Backery\Models;
+namespace Bakery\Models;
 
 class PackageCollection extends \ArrayObject
 {

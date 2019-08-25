@@ -1,6 +1,6 @@
 <?php
 
-namespace Backery\Models;
+namespace Bakery\Models;
 
 class Cart
 {

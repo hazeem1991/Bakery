@@ -1,9 +1,9 @@
 <?php declare (strict_types = 1);
 
-namespace Backery\Controllers;
+namespace Bakery\Controllers;
 
-use Backery\Models\Product;
-use Backery\Models\Cart;
+use Bakery\Models\Product;
+use Bakery\Models\Cart;
 class MainController
 {
     private static $mainController;

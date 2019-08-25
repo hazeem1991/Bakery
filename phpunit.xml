@@ -18,7 +18,7 @@
         </whitelist>
     </filter>
     <testsuites>
-        <testsuite name="Backery">
+        <testsuite name="Bakery">
             <file>./src/test/Models/ProductTest.php</file>
             <file>./src/test/Models/PackageTest.php</file>
             <file>./src/test/Models/CartTest.php</file>

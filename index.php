@@ -1,7 +1,7 @@
 <?php declare (strict_types = 1);
 header('Content-Type: text/html; charset=utf-8');
 require_once "./vendor/autoload.php";
-use Backery\Controllers\MainController;
+use Bakery\Controllers\MainController;
 function trim_line(string $string): string
 {
     $string = rtrim(trim($string));

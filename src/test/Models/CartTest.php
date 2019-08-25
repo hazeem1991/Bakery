@@ -1,10 +1,10 @@
 <?php declare (strict_types = 1);
 
-namespace Backery\Test\Models;
+namespace Bakery\Test\Models;
 
-use Backery\Models\Cart;
+use Bakery\Models\Cart;
 use PHPUnit\Framework\TestCase;
-use Backery\Models\Product;
+use Bakery\Models\Product;
 
 class CartTest extends TestCase
 {

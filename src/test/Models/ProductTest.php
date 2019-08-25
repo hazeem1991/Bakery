@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Backery\Test\Models;
+namespace Bakery\Test\Models;
 
 use PHPUnit\Framework\TestCase;
-use Backery\Models\Product;
-use Backery\Models\PackageCollection;
+use Bakery\Models\Product;
+use Bakery\Models\PackageCollection;
 
 class ProductTest extends TestCase
 {

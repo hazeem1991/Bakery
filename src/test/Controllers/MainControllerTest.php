@@ -1,11 +1,11 @@
 <?php declare (strict_types = 1);
 
-namespace Backery\Test\Controllers;
+namespace Bakery\Test\Controllers;
 
 use PHPUnit\Framework\TestCase;
-use Backery\Controllers\MainController;
-use Backery\Models\PackageCollection;
-use Backery\Models\Cart;
+use Bakery\Controllers\MainController;
+use Bakery\Models\PackageCollection;
+use Bakery\Models\Cart;
 
 class MainControllerTest extends TestCase
 {
