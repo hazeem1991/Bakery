@@ -20,10 +20,10 @@ class MainController
     {
         // Disable unserialize
     }
-    public function addtoCart(string $product_code, string $quantity): Cart
+    public function addToCart(string $product_code, string $quantity): Cart
     {
         $product = Product::getProduct($product_code);
-        $cart=Cart::newCart()->addProductToCart($product,(int)$quantity);
+        $cart=Cart::getCart()->addProductToCart($product,(int)$quantity);
         return $cart;
     }
     public function addProduct(string $name, string $code, string $price): Product
@@ -39,9 +39,10 @@ class MainController
         $product->save();
         return $product;
     }
-    public function checkOut()
+    public function checkOut():string
     {
-
+        $cart=Cart::getCart()->checkOut();
+        return $cart->__toString();
     }
     public static function mainController(): MainController
     {

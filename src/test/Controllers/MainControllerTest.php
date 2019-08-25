@@ -42,7 +42,7 @@ class MainControllerTest extends TestCase
     {
         $controller = MainController::mainController();
         $product = $controller->addProduct("test", "test", "1");
-        $cart=Cart::newCart()->addProductToCart($product,5);
+        $cart=Cart::getCart()->addProductToCart($product,5);
         $this->assertSame(5,$cart->getTotalQuantity());
         $this->assertSame(round(5*$product->getPrice(),2),$cart->getTotalPrice());
         $found=isset($cart->getItems()[$product->getCode()])&&$cart->getItems()[$product->getCode()]!=null;

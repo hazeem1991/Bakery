@@ -35,9 +35,11 @@ if (STDIN) {
             echo "add to cart\n";
             while (($input = fgets(STDIN)) !== false) {
                 $input = explode(" ", trim_line($input));
-                $cart=MainController::mainController()->addtoCart($input[0], $input[1]);
+                $cart=MainController::mainController()->addToCart($input[0], $input[1]);
             }
             echo "to cart added\n";
+            $cart=MainController::mainController()->checkOut();
+            echo $cart;
             break;
         default:
             throw new Exception("Error Processing File", 1);
