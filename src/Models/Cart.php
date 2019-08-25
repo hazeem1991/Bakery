@@ -5,9 +5,9 @@ namespace Backery\Models;
 class Cart
 {
     private static $cart;
-    public $totalPrice;
-    public $totalQuantity;
-    public $items;
+    private $totalPrice;
+    private $totalQuantity;
+    private $items;
     private function __construct()
     {
         $this->items = [];
@@ -22,10 +22,10 @@ class Cart
     {
         // Disable unserialize
     }
-    public function addProductToCart(Product $product, $quantity): Cart
+    public function addProductToCart(Product $product, int $quantity): Cart
     {
         $this->totalPrice = round($this->totalPrice + ($product->getPrice() * (int) $quantity), 2);
-        $this->totalQuantity = $this->totalQuantity + (int)  + $quantity;
+        $this->totalQuantity = $this->totalQuantity +  $quantity;
         $this->items[$product->getCode()] = [
             'product_info' => [
                 'price' => $product->getPrice(),
@@ -36,6 +36,26 @@ class Cart
             'product_price' => round(($product->getPrice() * (int) $quantity), 2),
         ];
         return $this;
+    }
+    public function getTotalPrice():float
+    {
+        return $this->totalPrice;
+    }
+    public function getTotalQuantity():int
+    {
+        return $this->totalQuantity;
+    }
+    public function getItems():array
+    {
+        return $this->items;
+    }
+    public function remove($code):array
+    {
+        $product_info=$this->items[$code];
+        $this->totalQuantity= $this->totalQuantity -$product_info['quantity'] ;
+        $this->totalPrice= round($this->totalPrice -$product_info['product_price'],2);
+        unset($this->items[$code]);
+        return $this->items;
     }
     public static function newCart(): Cart
     {

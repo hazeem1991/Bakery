@@ -37,7 +37,6 @@ if (STDIN) {
                 $input = explode(" ", trim_line($input));
                 $cart=MainController::mainController()->addtoCart($input[0], $input[1]);
             }
-            echo json_encode($cart)."\n";
             echo "to cart added\n";
             break;
         default:

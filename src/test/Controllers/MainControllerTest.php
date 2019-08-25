@@ -2,9 +2,10 @@
 
 namespace Backery\Test\Controllers;
 
+use PHPUnit\Framework\TestCase;
 use Backery\Controllers\MainController;
 use Backery\Models\PackageCollection;
-use PHPUnit\Framework\TestCase;
+use Backery\Models\Cart;
 
 class MainControllerTest extends TestCase
 {
@@ -35,6 +36,18 @@ class MainControllerTest extends TestCase
             }
         }
         $this->assertTrue($found);
+        $product->destroy();
+    }
+    public function testAddToCart(): void
+    {
+        $controller = MainController::mainController();
+        $product = $controller->addProduct("test", "test", "1");
+        $cart=Cart::newCart()->addProductToCart($product,5);
+        $this->assertSame(5,$cart->getTotalQuantity());
+        $this->assertSame(round(5*$product->getPrice(),2),$cart->getTotalPrice());
+        $found=isset($cart->getItems()[$product->getCode()])&&$cart->getItems()[$product->getCode()]!=null;
+        $this->assertTrue($found);
+        $cart->remove($product->getCode());
         $product->destroy();
     }
 }
