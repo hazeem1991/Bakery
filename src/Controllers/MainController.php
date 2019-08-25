@@ -30,9 +30,12 @@ class MainController
         $product->save();
         return $product;
     }
-    public function setPackeges(): MainController
+    public function setPackage(string $product_code,string $count): Product
     {
-        return $this;
+        $product = Product::getProduct($product_code);
+        $product->addPackage((int)$count);
+        $product->save();
+        return $product;
     }
     public function checkOut()
     {

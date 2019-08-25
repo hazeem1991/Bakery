@@ -13,8 +13,14 @@ class PackageCollection extends \ArrayObject
             return false;
         }
     }
-    private function search(Package $package):bool
+    private function search(Package $newPackage):bool
     {
+        foreach ($this as $package) {
+            if($newPackage->getCount()==$package->getCount())
+            {
+                return true;
+            }
+        }
         return false;
     }
 }
