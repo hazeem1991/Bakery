@@ -1,1 +1,5 @@
 /vendor/
+.phpunit.result.cache
+composer.json.lock
+/src/test/_reports
+/src/Data/products_data.json
