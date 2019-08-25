@@ -2,7 +2,7 @@
 
 namespace Backery\Models;
 
-class Product
+class Product implements \JsonSerializable 
 {
     private $name;
     private $code;
@@ -13,7 +13,8 @@ class Product
         $this->name = $name;
         $this->price = $price;
         $this->code = $code;
-        $this->packages = new PackageCollection(new Package(1));
+        $this->packages = new PackageCollection();
+        $this->packages->addPackage(new Package(1));
     }
     public function getName(): string
     {
@@ -51,5 +52,23 @@ class Product
     public function getPackages(): PackageCollection
     {
         return $this->packages;
+    }
+    public function jsonSerialize()
+    {
+        $vars = get_object_vars($this);
+        $temp=get_object_vars($this->packages);
+        $vars['packages']=[];
+        foreach ($temp as $key => $package) {
+            $vars['packages'][]=$package->jsonSerialize();
+            
+        }
+        return $vars;
+    }
+    public function save()
+    {
+        fopen($_SERVER['DOCUMENT_ROOT'].'src/Data/'."products_data.txt",'w');
+        $product_array=json_decode(file_get_contents($_SERVER['DOCUMENT_ROOT'].'src/Data/'."products_data.txt"));
+        $product_array[]=$this->jsonSerialize();
+        file_put_contents($_SERVER['DOCUMENT_ROOT'].'src/Data/'."products_data.txt",json_encode($product_array));
     }
 }

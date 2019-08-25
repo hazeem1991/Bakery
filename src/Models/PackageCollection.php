@@ -4,10 +4,10 @@ namespace Backery\Models;
 
 class PackageCollection extends \ArrayObject
 {
-    public function append(Package $package):bool
+    public function addPackage(Package $package):bool
     {
-        if(!$this->search()){
-            parent::append($package);
+        if(!$this->search($package)){
+            $this->append($package);
             return true;
         }else{
             return false;
@@ -15,6 +15,6 @@ class PackageCollection extends \ArrayObject
     }
     private function search(Package $package):bool
     {
-        return true;
+        return false;
     }
 }
