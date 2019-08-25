@@ -33,8 +33,8 @@ class Cart
                 'name' => $product->getName(),
                 'code' => $product->getCode(),
             ],
-            'quantity' => $quantity,
-            'product_price' => round(($product->getPrice() * (int) $quantity), 2),
+            'quantity' => $quantity+(isset($this->items[$product->getCode()])==true?$this->items[$product->getCode()]['quantity']:0),
+            'product_price' => round(($product->getPrice() * (int) $quantity), 2)+(isset($this->items[$product->getCode()])==true?$this->items[$product->getCode()]['product_price']:0),
         ];
         return $this;
     }
