@@ -33,8 +33,8 @@ class Cart
                 'name' => $product->getName(),
                 'code' => $product->getCode(),
             ],
-            'quantity' => $quantity+(isset($this->items[$product->getCode()])==true?$this->items[$product->getCode()]['quantity']:0),
-            'product_price' => round(($product->getPrice() * (int) $quantity), 2)+(isset($this->items[$product->getCode()])==true?$this->items[$product->getCode()]['product_price']:0),
+            'quantity' => $quantity + (isset($this->items[$product->getCode()]) == true ? $this->items[$product->getCode()]['quantity'] : 0),
+            'product_price' => round(($product->getPrice() * (int) $quantity), 2) + (isset($this->items[$product->getCode()]) == true ? $this->items[$product->getCode()]['product_price'] : 0),
         ];
         return $this;
     }
@@ -120,7 +120,7 @@ class Cart
             $string .= "\t Packages\n";
             if (isset($item['packages'])) {
                 foreach ($item['packages'] as $key => $package) {
-                    $string .= "\t\t" . $package."\n";
+                    $string .= "\t\t" . $package . "\n";
                 }
             }
 

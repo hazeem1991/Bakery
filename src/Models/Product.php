@@ -9,16 +9,18 @@ class Product implements \JsonSerializable
     private $price;
     private $packages;
     const DATA_FILE = 'src/Data/' . "products_data.json";
-    public function __construct(string $name, string $code, float $price,$get=false)
+    public function __construct(string $name, string $code, float $price, $get = false)
     {
         $this->name = $name;
         $this->price = $price;
         $this->code = $code;
         $this->packages = new PackageCollection();
-        if(!$get)
+        if (!$get) {
             $this->packages->addPackage(new Package(1));
+        }
+
     }
-    public static function getProduct($code):Product
+    public static function getProduct($code): Product
     {
         try
         {
@@ -27,7 +29,7 @@ class Product implements \JsonSerializable
             }
             $product_array = json_decode(file_get_contents(self::DATA_FILE), true);
             if (isset($product_array[$code])) {
-                $product=new Product($product_array[$code]['name'],$product_array[$code]['code'],$product_array[$code]['price'],true);
+                $product = new Product($product_array[$code]['name'], $product_array[$code]['code'], $product_array[$code]['price'], true);
                 foreach ($product_array[$code]['packages'] as $key => $package) {
                     $product->addPackage($package['count']);
                 }

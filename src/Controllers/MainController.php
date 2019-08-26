@@ -2,8 +2,9 @@
 
 namespace Bakery\Controllers;
 
-use Bakery\Models\Product;
 use Bakery\Models\Cart;
+use Bakery\Models\Product;
+
 class MainController
 {
     private static $mainController;
@@ -23,7 +24,7 @@ class MainController
     public function addToCart(string $product_code, string $quantity): Cart
     {
         $product = Product::getProduct($product_code);
-        $cart=Cart::getCart()->addProductToCart($product,(int)$quantity);
+        $cart = Cart::getCart()->addProductToCart($product, (int) $quantity);
         return $cart;
     }
     public function addProduct(string $name, string $code, string $price): Product
@@ -32,16 +33,16 @@ class MainController
         $product->save();
         return $product;
     }
-    public function setPackage(string $product_code,string $count): Product
+    public function setPackage(string $product_code, string $count): Product
     {
         $product = Product::getProduct($product_code);
-        $product->addPackage((int)$count);
+        $product->addPackage((int) $count);
         $product->save();
         return $product;
     }
-    public function checkOut():string
+    public function checkOut(): string
     {
-        $cart=Cart::getCart()->checkOut();
+        $cart = Cart::getCart()->checkOut();
         return $cart->__toString();
     }
     public static function mainController(): MainController

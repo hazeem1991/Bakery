@@ -2,10 +2,9 @@
 
 namespace Bakery\Test\Controllers;
 
-use PHPUnit\Framework\TestCase;
 use Bakery\Controllers\MainController;
 use Bakery\Models\PackageCollection;
-use Bakery\Models\Cart;
+use PHPUnit\Framework\TestCase;
 
 class MainControllerTest extends TestCase
 {
@@ -42,11 +41,24 @@ class MainControllerTest extends TestCase
     {
         $controller = MainController::mainController();
         $product = $controller->addProduct("test", "test", "1");
-        $cart=$controller->addToCart('test',"5");
-        $this->assertSame(5,$cart->getTotalQuantity());
-        $this->assertSame(round(5*$product->getPrice(),2),$cart->getTotalPrice());
-        $found=isset($cart->getItems()[$product->getCode()])&&$cart->getItems()[$product->getCode()]!=null;
+        $cart = $controller->addToCart('test', "5");
+        $this->assertSame(5, $cart->getTotalQuantity());
+        $this->assertSame(round(5 * $product->getPrice(), 2), $cart->getTotalPrice());
+        $found = isset($cart->getItems()[$product->getCode()]) && $cart->getItems()[$product->getCode()] != null;
         $this->assertTrue($found);
+        $cart->remove($product->getCode());
+        $product->destroy();
+    }
+    public function testCheckOut(): void
+    {
+        $controller = MainController::mainController();
+        $product = $controller->addProduct("test", "test", "1");
+        $product = $controller->setPackage("test", "3");
+        $cart = $controller->addToCart('test', "5");
+        $checkOutData = $controller->checkOut();
+        $this->assertTrue(in_array("1x3", $cart->getItems()[$product->getCode()]['packages']));
+        $this->assertTrue(in_array("2x1", $cart->getItems()[$product->getCode()]['packages']));
+        $this->assertTrue(is_string($checkOutData));
         $cart->remove($product->getCode());
         $product->destroy();
     }

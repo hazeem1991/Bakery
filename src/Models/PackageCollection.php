@@ -4,20 +4,19 @@ namespace Bakery\Models;
 
 class PackageCollection extends \ArrayObject
 {
-    public function addPackage(Package $package):bool
+    public function addPackage(Package $package): bool
     {
-        if(!$this->search($package)){
+        if (!$this->search($package)) {
             $this->append($package);
             return true;
-        }else{
+        } else {
             return false;
         }
     }
-    private function search(Package $newPackage):bool
+    private function search(Package $newPackage): bool
     {
         foreach ($this as $package) {
-            if($newPackage->getCount()==$package->getCount())
-            {
+            if ($newPackage->getCount() == $package->getCount()) {
                 return true;
             }
         }

@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php declare (strict_types = 1);
 
 namespace Bakery\Models;
 
@@ -7,9 +7,9 @@ class Package
     private $count;
     public function __construct(int $count)
     {
-        $this->count=$count;
+        $this->count = $count;
     }
-    public function getCount():int
+    public function getCount(): int
     {
         return $this->count;
     }
